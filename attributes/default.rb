@@ -25,5 +25,6 @@ default["cuda"]["home"]                            = "#{node["cuda"]["dir"]}/cud
 default["kagent"]["enabled"]                       = "false"
 
 
+default["setup"]["user"]                           = "ubuntu"
 default['setup']['default']['public_ips']          = ['']
 default['setup']['default']['private_ips']         = ['']
