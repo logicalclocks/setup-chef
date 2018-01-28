@@ -130,7 +130,7 @@ bash "hops_cpus" do
     user "root"
     code <<-EOF
     rm -f /tmp/cpus.hops
-    cpus=$(cat /proc/cpuinfo | grep 'model name' | sed -e '1,/model name	: /d')
+    cpus=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //g' | tail -1)
     echo -n "'cpus' : '$cpus', " > /tmp/cpus.hops
     num_cpus=$(cat /proc/cpuinfo | grep 'processor' | wc -l)
     echo -n "'num_cpus' : '$num_cpus', " >> /tmp/cpus.hops
