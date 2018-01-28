@@ -47,10 +47,10 @@ end
 bash "start_hops" do
   user "root"
   code <<-EOF
-    echo "{ "#{node['host']}" : {" > /tmp/hops_start.hops
+    echo "{ "\"#{node['fqdn']}\"" : {" > /tmp/hops_start.hops
     rm -f /tmp/ping.hops
     touch /tmp/ping.hops
-    echo "\"non_reachable}" : [" > /tmp/ping.hops        
+    echo "\"non_reachable\" : [" > /tmp/ping.hops        
   EOF
 end
 
@@ -73,8 +73,8 @@ end
 bash "ping_finish" do
     user "root"
     code <<-EOF
-    line=$(cat "/tmp/ping.hops" | sed -e 's/,//')
-    echo "${line}]," >> /tmp/ping.hops        
+    line=$(cat /tmp/ping.hops | sed -e 's/,//')
+    echo "${line}]," > /tmp/ping.hops        
 EOF
 end
 
@@ -117,7 +117,7 @@ bash "hops_dirs" do
     code <<-EOF
     rm -f /tmp/devices.hops
     devices=$(df -h | grep ^/ | tail -n +2)
-    echo "'devices' : \"$devices\"," > /tmp/devices.hops
+    echo "'devices' : \\"$devices\\"," > /tmp/devices.hops
     EOF
 end
 
