@@ -29,6 +29,34 @@ recipe "setup::cuda", "Installs and configures cuda"
 recipe "setup::purge", "Deletes cuda and everything else"
 
 
+attribute "install/dir",
+          :description => "Default ''. Set to a base directory under which all hops services will be installed.",
+          :type => "string"
+
+attribute "install/user",
+          :description => "User to install the services as",
+          :type => "string"
+
+attribute "install/upgrade",
+          :description => "User to upgrade the software",
+          :type => "string"
+
+attribute "install/ssl",
+          :description => "Is SSL turned on for all services?",
+          :type => "string"
+
+attribute "install/cleanup_downloads",
+          :description => "Remove any zipped binaries that were downloaded and used to install services",
+          :type => "string"
+
+attribute "install/addhost",
+          :description => "Indicates that this host will be added to an existing Hops cluster.",
+          :type => "string"
+
+attribute "install/hostname_prefix",
+          :description => "Add all ips to the /etc/hosts file and give each hostname this prefix. Default is 'hops'.",
+          :type => "string"
+
 attribute "cuda/user",
           :description => "Username to run cuda as",
           :type => 'string'

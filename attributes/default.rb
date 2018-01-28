@@ -7,6 +7,7 @@ default["install"]["ssl"]                          = "false"
 default["install"]["cleanup_downloads"]            = "false"
 default["install"]["upgrade"]                      = "false"
 default["install"]["addhost"]                      = "false"
+default["install"]["hostname_prefix"]              = "hops"
 
 node.default["download_url"]                       = "http://193.10.67.171/hops"
 
