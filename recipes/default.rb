@@ -196,6 +196,6 @@ bash "end_hops" do
 end
 
 setup_return "returning_report_from_node" do
-  action: measure
+  action :measure
 end
 
