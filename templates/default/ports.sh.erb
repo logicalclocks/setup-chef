@@ -3,7 +3,7 @@
 netstat -tlpn > /tmp/hops_services.txt
 rm -f /tmp/ports.hops
 touch /tmp/ports.hops
-echo "'port' : {" > /tmp/ports.hops
+echo -n "'port' : {" > /tmp/ports.hops
 port=
 
 check_port()
@@ -11,14 +11,14 @@ check_port()
     grep ":$port " /tmp/hops_services.txt 2>&1 > /dev/null
     if [ $? -eq 0 ] ; then
        service=$(grep ":$port " /tmp/hops_services.txt | awk -F ' ' '{print $7}')
-       echo "\"$port\" : \"$service\"," >> /tmp/ports.hops
+       echo -n "\"$port\" : \"$service\"," >> /tmp/ports.hops
     fi
 }
 for port in 3306 11086 80 443 8080 8181 50070 8020 50075 8088 10020 9083 10000 18088 2181
 do
   check_port
 done
-echo "}," > /tmp/ports.hops
+echo -n "}," > /tmp/ports.hops
 
 
 

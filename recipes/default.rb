@@ -33,6 +33,8 @@
 
 # 6. Update the /etc/hosts on all servers to include all hosts
 
+# pretty print JSON utility
+package 'jq'
 
 if node['install']['addhost'].eql?("true")
   node[:setup][:default][:private_ips].each_with_index do |ip, index| 
@@ -44,13 +46,12 @@ if node['install']['addhost'].eql?("true")
   end
 end
 
-bash "start_hops" do
+bash "start_ping" do
   user "root"
   code <<-EOF
-    echo "{ "\"#{node['fqdn']}\"" : {" > /tmp/hops_start.hops
     rm -f /tmp/ping.hops
     touch /tmp/ping.hops
-    echo "\"non_reachable\" : [" > /tmp/ping.hops        
+    echo "'non_reachable' : [" > /tmp/ping.hops        
   EOF
 end
 
@@ -74,7 +75,7 @@ bash "ping_finish" do
     user "root"
     code <<-EOF
     line=$(cat /tmp/ping.hops | sed -e 's/,//')
-    echo "${line}]," > /tmp/ping.hops        
+    echo -n "${line}]," > /tmp/ping.hops        
 EOF
 end
 
@@ -107,7 +108,7 @@ bash "hops_dirs" do
     code <<-EOF
     rm -f /tmp/dirs.hops
     if [ -d /srv/hops ] ; then
-       echo " 'dirs_not_empty' : [ '/srv/hops']," > /tmp/dirs.hops
+       echo -n " 'dirs_not_empty' : [ '/srv/hops']," > /tmp/dirs.hops
     fi
     EOF
 end
@@ -117,7 +118,7 @@ bash "hops_dirs" do
     code <<-EOF
     rm -f /tmp/devices.hops
     devices=$(df -h | grep ^/ | tail -n +2)
-    echo "'devices' : \\"$devices\\"," > /tmp/devices.hops
+    echo -n "'devices' : \'$devices', " > /tmp/devices.hops
     EOF
 end
 
@@ -130,7 +131,7 @@ bash "hops_cpus" do
     code <<-EOF
     rm -f /tmp/cpus.hops
     cpus=$(cat /proc/cpuinfo | grep 'model name')
-    echo "'cpus' : \"$cpus\"," > /tmp/cpus.hops
+    echo -n "'cpus' : '$cpus', " > /tmp/cpus.hops
     EOF
 end
 
@@ -143,7 +144,7 @@ bash "hops_mem" do
     code <<-EOF
     rm -f /tmp/mem.hops
     mem=$(free -m | head -2 | tail -n +2 | awk -F ' ' '{print $2}')
-    echo "'mem' : \"$mem\"," > /tmp/mem.hops
+    echo -n "'mem' : '$mem', " > /tmp/mem.hops
     EOF
 end
 
@@ -156,7 +157,7 @@ bash "hops_gpus" do
     code <<-EOF
     rm -f /tmp/gpus.hops
     gpus=$(lspci -vnn | grep VGA -A 12)
-    echo "'gpus' : \"$gpus\"," > /tmp/gpus.hops
+    echo -n "'gpus' : '$gpus', " > /tmp/gpus.hops
     EOF
 end
 
@@ -169,7 +170,7 @@ bash "hops_cuda" do
     code <<-EOF
     rm -f /tmp/cuda.hops
     cuda=$(ndvidia-smi -L)
-    echo "'cuda' : \"$cuda\"" > /tmp/cuda.hops
+    echo -n "'cuda' : '$cuda'" > /tmp/cuda.hops
     EOF
 end
 
@@ -181,15 +182,16 @@ end
 bash "end_hops" do
   user "root"
   code <<-EOF
-    cat /tmp/hops_start.hops > /tmp/hops.hops
-    cat /tmp/ping.hops >> /tmp/hops.hops
+    cat /tmp/ping.hops > /tmp/hops.hops
     cat /tmp/dirs.hops >> /tmp/hops.hops
     cat /tmp/devices.hops >> /tmp/hops.hops
     cat /tmp/cpus.hops >> /tmp/hops.hops
     cat /tmp/mem.hops >> /tmp/hops.hops
     cat /tmp/gpus.hops >> /tmp/hops.hops
     cat /tmp/cuda.hops >> /tmp/hops.hops
-    echo "}" >> /tmp/hops.hops
+    echo -n " }" >> /tmp/hops.hops
+    cat /tmp/hops.hops | jq > /tmp/hops.pretty
+    mv -f /tmp/hops.pretty /hops/hops.hops    
   EOF
 end
 

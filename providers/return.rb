@@ -8,7 +8,7 @@ action :measure do
     executing_recipe node['fqdn']
     cookbook "setup"
     recipe "default"
-    param "node_report"
+    param "#{node['fqdn']}"
     value  "#{contents}"
   end
 
