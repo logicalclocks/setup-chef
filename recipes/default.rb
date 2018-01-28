@@ -51,7 +51,7 @@ bash "start_ping" do
   code <<-EOF
     rm -f /tmp/ping.hops
     touch /tmp/ping.hops
-    echo "'non_reachable' : [" > /tmp/ping.hops        
+    echo "{ 'non_reachable' : [" > /tmp/ping.hops        
   EOF
 end
 
@@ -130,8 +130,10 @@ bash "hops_cpus" do
     user "root"
     code <<-EOF
     rm -f /tmp/cpus.hops
-    cpus=$(cat /proc/cpuinfo | grep 'model name')
+    cpus=$(cat /proc/cpuinfo | grep 'model name' | sed -e '1,/model name	: /d')
     echo -n "'cpus' : '$cpus', " > /tmp/cpus.hops
+    num_cpus=$(cat /proc/cpuinfo | grep 'processor' | wc -l)
+    echo -n "'num_cpus' : '$num_cpus', " >> /tmp/cpus.hops
     EOF
 end
 
@@ -190,8 +192,10 @@ bash "end_hops" do
     cat /tmp/gpus.hops >> /tmp/hops.hops
     cat /tmp/cuda.hops >> /tmp/hops.hops
     echo -n " }" >> /tmp/hops.hops
+    # JSON wants " (double quotes) not ' (single quotes)    
+    perl -pi -e "s/'/\"/g" /hops/hops.hops
     cat /tmp/hops.hops | jq > /tmp/hops.pretty
-    mv -f /tmp/hops.pretty /hops/hops.hops    
+    mv -f /tmp/hops.pretty /hops/hops.hops
   EOF
 end
 
