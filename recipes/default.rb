@@ -34,7 +34,7 @@
 # 6. Update the /etc/hosts on all servers to include all hosts
 
 # pretty print JSON utility
-package 'jq'
+# package 'jq'
 
 if node['install']['addhost'].eql?("true")
   node[:setup][:default][:private_ips].each_with_index do |ip, index| 
@@ -194,8 +194,8 @@ bash "end_hops" do
     echo -n " }" >> /tmp/hops.hops
     # JSON wants " (double quotes) not ' (single quotes)    
     perl -pi -e "s/'/\"/g" /tmp/hops.hops
-    cat /tmp/hops.hops | jq > /tmp/hops.pretty
-    mv -f /tmp/hops.pretty /tmp/hops.hops
+    # cat /tmp/hops.hops | jq > /tmp/hops.pretty
+    #mv -f /tmp/hops.pretty /tmp/hops.hops
   EOF
 end
 
