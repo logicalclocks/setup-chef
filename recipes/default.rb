@@ -195,7 +195,7 @@ bash "end_hops" do
     # JSON wants " (double quotes) not ' (single quotes)    
     perl -pi -e "s/'/\"/g" /tmp/hops.hops
     cat /tmp/hops.hops | jq > /tmp/hops.pretty
-    mv -f /tmp/hops.pretty /hops/hops.hops
+    mv -f /tmp/hops.pretty /tmp/hops.hops
   EOF
 end
 
