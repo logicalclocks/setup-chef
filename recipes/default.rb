@@ -193,7 +193,7 @@ bash "end_hops" do
     cat /tmp/cuda.hops >> /tmp/hops.hops
     echo -n " }" >> /tmp/hops.hops
     # JSON wants " (double quotes) not ' (single quotes)    
-    perl -pi -e "s/'/\"/g" /tmp/hops.hops
+    perl -pi -e \"s/'/\\"/g\" /tmp/hops.hops
     # cat /tmp/hops.hops | jq > /tmp/hops.pretty
     #mv -f /tmp/hops.pretty /tmp/hops.hops
   EOF
