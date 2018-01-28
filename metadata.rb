@@ -57,6 +57,10 @@ attribute "install/hostname_prefix",
           :description => "Add all ips to the /etc/hosts file and give each hostname this prefix. Default is 'hops'.",
           :type => "string"
 
+attribute "setup/user",
+          :description => "User to install the services as",
+          :type => "string"
+
 attribute "cuda/user",
           :description => "Username to run cuda as",
           :type => 'string'
