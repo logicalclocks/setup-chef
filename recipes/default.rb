@@ -64,7 +64,7 @@ for n in node['setup']['default']['private_ips']
     code <<-EOF 
      ping -c 2 #{n}
      if [ $? -ne 0 ] ; then
-        echo ",\"#{n}\"" > /tmp/ping.hops        
+        echo ",\"#{n}\"" >> /tmp/ping.hops        
      fi
   EOF
   end
@@ -73,10 +73,8 @@ end
 bash "ping_finish" do
     user "root"
     code <<-EOF
-# remove first comma (if one)
     line=$(cat "/tmp/ping.hops" | sed -e 's/,//')
-    echo $line >
-    echo "${line}]," > /tmp/ping.hops        
+    echo "${line}]," >> /tmp/ping.hops        
 EOF
 end
 
