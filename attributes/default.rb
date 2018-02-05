@@ -12,7 +12,8 @@ include_attribute "drelephant"
 include_attribute "dela"
 include_attribute "hive2"
 include_attribute "hopsworks"
-
+include_attribute "kkafka"
+include_attribute "kzookeeper"
 
 
 default["install"]["dir"]                          = ""

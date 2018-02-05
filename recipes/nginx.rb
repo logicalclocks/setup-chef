@@ -33,8 +33,8 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "flink-" + node['flink']['version'] + "-bin-hadoop" + node['flink']['hadoop_version'] + "-scala_" + node['flink']['scala_version'] + ".tgz" + ", " +
   "epipe/#{node['platform_family']}/epipe-#{node['epipe']['version']}.tar.gz" + ", " +
   "dela/dela-#{node['dela']['version']}.jar" + ", " +
-  "kafka_#{node['kkafka']['scala_version']}-#{nodeb['kkafka']['version']}.tgz + ", " +
-  "hops-kafka-authorizer-" + node['kkafka']['authorizer_version'] + ".jar" + ", " +
+  "kafka_#{node['kkafka']['scala_version']}-#{node['kkafka']['version']}.tgz" + ", " +
+  "hops-kafka-authorizer-#{node['kkafka']['authorizer_version']}.jar" + ", " +
   "elasticsearch-#{node['elastic']['version']}.tar.gz" + ", " +
   "dr-elephant-#{node['drelephant']['version']}.zip" + ", " +
   "Python.zip" + ", " +
