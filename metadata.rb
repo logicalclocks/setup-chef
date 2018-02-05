@@ -26,6 +26,7 @@ depends 'magic_shell'
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
 recipe "setup::cuda", "Installs and configures cuda"
+recipe "setup::nginx", "Installs and configures nginx to host installation files"
 recipe "setup::purge", "Deletes cuda and everything else"
 
 

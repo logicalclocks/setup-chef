@@ -1,6 +1,3 @@
 dependencies: 
   - recipe: setup::install
   - recipe: setup::default
-  - recipe: setup::cuda
-    global:  
-      - setup::default
