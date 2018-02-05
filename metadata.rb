@@ -41,6 +41,8 @@ depends 'sudo'
 depends 'hostsfile'
 depends 'ntp'
 depends 'magic_shell'
+depends 'nginx'
+depends 'hopsworks'
 
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
