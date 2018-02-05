@@ -11,7 +11,7 @@ include_attribute "kzookeeper"
 include_attribute "drelephant"
 include_attribute "dela"
 include_attribute "hive2"
-include_attribute "hopworks"
+include_attribute "hopsworks"
 
 
 
