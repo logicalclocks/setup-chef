@@ -5,8 +5,6 @@ package 'curl'
 include_recipe 'nginx::default'
 
 
-
-
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
   "influxdb-#{node['influxdb']['version']}_linux_amd64.tar.gz" + ", " +
   "grafana-#{node['grafana']['version']}.linux-x64.tar.gz" + ", " +
@@ -56,18 +54,16 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "chefdk-2.3.1-1.el7.x86_64.rpm" + ", " +
   "l_mpi_2018.0.128.tgz" + ", " +
   "#{node['cuda']['nccl_version']}.txz" + ", " +
-  " + ", " +
-  " + ", " +
   "bcprov-jdk15on-149.jar"
 
-download = files.split(/\s*,\s*/)
+all = files.split(/\s*,\s*/)
 
 spark_dir = "spark-sql-dependencies"
 
 base="/var/www/html"
 
-dirs=%w{ hopsworks/#{node['hopsworks']['version']} parquet epipe/debian epipe/rhel hivecleaner/ubuntu hivecleaner/centos zookeeper-#{node['kzookeeper']['version']} hops-libndbclient/#{node['ndb']['version']} #{spark_dir} dela tensorflow }
-
+directories="hopsworks/#{node['hopsworks']['version']} parquet epipe/debian epipe/rhel hivecleaner/ubuntu hivecleaner/centos zookeeper-#{node['kzookeeper']['version']} hops-libndbclient/#{node['ndb']['version']} #{spark_dir} dela tensorflow"
+dirs = directories.split(/\s*,\s*/)
 
 for d in dirs 
 
@@ -97,7 +93,7 @@ for f in spark_deps
 end  
 
 
-for f in download 
+for f in all
 
   remote_file "#{base}/#{f}" do
     user node['setup']['user']
