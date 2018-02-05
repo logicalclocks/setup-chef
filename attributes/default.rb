@@ -1,5 +1,19 @@
 include_attribute "conda"
 include_attribute "kagent"
+include_attribute "ndb"
+include_attribute "hadoop_spark"
+include_attribute "flink"
+include_attribute "elastic"
+include_attribute "zeppelin"
+include_attribute "glassfish"
+include_attribute "kkafka"
+include_attribute "kzookeeper"
+include_attribute "drelephant"
+include_attribute "dela"
+include_attribute "hive2"
+include_attribute "hopworks"
+
+
 
 default["install"]["dir"]                          = ""
 default["install"]["user"]                         = ""
