@@ -2,8 +2,9 @@ apt_update 'update' if platform_family?('debian')
 
 package 'curl'
 
-include_recipe 'nginx::default'
-
+if "#{node['setup']['nginx_skip']}" == "true"
+  include_recipe 'nginx::default'
+end
 
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
   "influxdb-#{node['influxdb']['version']}_linux_amd64.tar.gz" + ", " +
@@ -38,7 +39,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "Python.zip" + ", " +
   "tfspark.zip" + ", " +
   "tensorflow/hops-tensorflow-#{node['tensorflow']['hopstf_version']}.jar" + ", " +
-  "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}#_linux.run" + ", " +
+  "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}_linux.run" + ", " +
   "#{node['cuda']['driver_version']}" + ", " +
   "cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
   "cudnn-#{node['cuda']['major_version']}-linux-x64-v#{node['cudnn']['version']}.tgz" + ", " +
@@ -61,7 +62,7 @@ all = files.split(/\s*,\s*/)
 
 spark_dir = "spark-sql-dependencies"
 
-base="/var/www/html"
+base=node['setup']['download_dir']
 
 # directories="hopsworks/#{node['hopsworks']['version']}, parquet, epipe/debian, epipe/rhel, hivecleaner/ubuntu, hivecleaner/centos, zookeeper-#{node['kzookeeper']['version']}, hops-libndbclient/#{node['ndb']['version']}, #{spark_dir}, dela, tensorflow"
 # dirs = directories.split(/\s*,\s*/)
@@ -79,7 +80,7 @@ base="/var/www/html"
 # end
 
 
-spark_deps = %w{ parquet-encoding-1.9.0.jar parquet-common-1.9.0.jar parquet-hadoop-1.9.0.jar parquet-jackson-1.9.0.jar parquet-column-1.9.0.jar parquet-format-2.3.1.jar hive-exec-1.2.1.spark2.jar spark-hive_2.11-2.2.0.jar snappy-0.4.jar }
+spark_deps = %w{ parquet-encoding-#{node['hadoop_spark']['parquet_version']}.jar parquet-common-#{node['hadoop_spark']['parquet_version']}.jar parquet-hadoop-#{node['hadoop_spark']['parquet_version']}.jar parquet-jackson-#{node['hadoop_spark']['parquet_version']}.jar parquet-column-#{node['hadoop_spark']['parquet_version']}.jar parquet-format-2.3.1.jar hive-exec-1.2.1.spark2.jar spark-hive_2.11-2.2.0.jar snappy-0.4.jar }
 
 directory "#{base}/#{spark_dir}" do
   recursive true
