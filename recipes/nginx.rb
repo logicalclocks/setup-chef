@@ -37,23 +37,24 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "dr-elephant-#{node['drelephant']['version']}.zip" + ", " +
   "Python.zip" + ", " +
   "tfspark.zip" + ", " +
-  "tensorflow/hops-tensorflow-0.0.1.jar" + ", " +
+  "tensorflow/hops-tensorflow-#{node['tensorflow']['hopstf_version']}.jar" + ", " +
   "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}#_linux.run" + ", " +
-  "NVIDIA-Linux-x86_64-390.25.run" + ", " +
+  "#{node['cuda']['driver_version']}" + ", " +
   "cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
   "cudnn-#{node['cuda']['major_version']}-linux-x64-v#{node['cudnn']['version']}.tgz" + ", " +
   "bazel-#{node['bazel']['version']}-installer-linux-x86_64.sh" + ", " +
   "payara-#{node['glassfish']['version']}.zip" + ", " +
-  "otp-auth-0.3.0.jar" + ", " +
+  node['hopsworks']['cauth_version'] + ", " +
   "hopsworks/#{node['hopsworks']['version']}/hopsworks-web.war" + ", " +
   "hopsworks/#{node['hopsworks']['version']}/hopsworks-ca.war" + ", " +
   "hopsworks/#{node['hopsworks']['version']}/hopsworks-ear.ear" + ", " +
   "flyway-commandline-#{node['hopsworks']['flyway']['version']}-linux-x64.tar.gz" + ", " +
-  "dtrx-7.1.tar.gz" + ", " +
+  node['dtrx']['version'] + ", " +
   "swagger-ui-2.2.8.tar.gz" + ", " +
   "chefdk-2.3.1-1.el7.x86_64.rpm" + ", " +
   "l_mpi_2018.0.128.tgz" + ", " +
   "#{node['cuda']['nccl_version']}.txz" + ", " +
+  "openmpi/#{node['openmpi']['version']}" + ", " +       
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)

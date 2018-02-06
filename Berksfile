@@ -3,7 +3,7 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'hopsworks', github: "hopshadoop/hopsworks-chef", branch: "master"
+cookbook 'hopsworks', github: "hopshadoop/hopsworks-chef", branch: "downloader"
 cookbook 'java'
 cookbook 'conda', github: "hopshadoop/conda-chef", branch: "master"
 cookbook 'kagent', github: "hopshadoop/kagent-chef", branch: "master"
@@ -14,7 +14,7 @@ cookbook 'flink', github: "hopshadoop/flink-chef", branch: "master"
 cookbook 'zeppelin', github: "hopshadoop/zeppelin-chef", branch: "master"
 cookbook 'livy', github: "hopshadoop/livy-chef", branch: "master"
 cookbook 'drelephant', github: "hopshadoop/dr-elephant-chef", branch: "master"
-cookbook 'tensorflow', github: "hopshadoop/tensorflow-chef", branch: "master"
+cookbook 'tensorflow', github: "hopshadoop/tensorflow-chef", branch: "downloader"
 
 cookbook 'epipe', github: "hopshadoop/epipe-chef", branch: "master"
 cookbook 'dela', github: "hopshadoop/dela-chef", branch: "master"
