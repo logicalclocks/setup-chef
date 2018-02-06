@@ -88,7 +88,7 @@ deps = spark_deps.split(/\s*,\s*/)
 
 for f in deps
 
-  remote_file "#{base}/#{f}" do
+  remote_file "#{base}/#{spark_dir}/#{f}" do
     user node['setup']['user']
     group node['setup']['group']
     source node['download_url'] + "/#{spark_dir}/#{f}"
