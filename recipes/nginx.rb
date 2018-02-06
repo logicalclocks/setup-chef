@@ -38,7 +38,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "Python.zip" + ", " +
   "tfspark.zip" + ", " +
   "tensorflow/hops-tensorflow-0.0.1.jar" + ", " +
-  "cuda_#{node['cuda']['version']}_linux.run" + ", " +
+  "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}#_linux.run" + ", " +
   "NVIDIA-Linux-x86_64-390.25.run" + ", " +
   "cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
   "cudnn-#{node['cuda']['major_version']}-linux-x64-v#{node['cudnn']['version']}.tgz" + ", " +
