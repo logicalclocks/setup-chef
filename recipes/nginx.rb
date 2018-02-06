@@ -80,14 +80,16 @@ base=node['setup']['download_dir']
 # end
 
 
-spark_deps = %w{ parquet-encoding-#{node['hadoop_spark']['parquet_version']}.jar parquet-common-#{node['hadoop_spark']['parquet_version']}.jar parquet-hadoop-#{node['hadoop_spark']['parquet_version']}.jar parquet-jackson-#{node['hadoop_spark']['parquet_version']}.jar parquet-column-#{node['hadoop_spark']['parquet_version']}.jar parquet-format-2.3.1.jar hive-exec-1.2.1.spark2.jar spark-hive_2.11-2.2.0.jar snappy-0.4.jar }
+spark_deps = "parquet-encoding-#{node['hadoop_spark']['parquet_version']}.jar, parquet-common-#{node['hadoop_spark']['parquet_version']}.jar, parquet-hadoop-#{node['hadoop_spark']['parquet_version']}.jar, parquet-jackson-#{node['hadoop_spark']['parquet_version']}.jar, parquet-column-#{node['hadoop_spark']['parquet_version']}.jar, parquet-format-2.3.1.jar, hive-exec-1.2.1.spark2.jar, spark-hive_2.11-2.2.0.jar, snappy-0.4.jar"
 
 directory "#{base}/#{spark_dir}" do
   recursive true
   mode '0755'
 end
 
-for f in spark_deps
+deps = spark_deps.split(/\s*,\s*/)
+
+for f in deps
 
   remote_file "#{base}/#{f}" do
     user node['setup']['user']
