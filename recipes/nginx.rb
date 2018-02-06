@@ -3,6 +3,7 @@ apt_update 'update' if platform_family?('debian')
 package 'curl'
 
 if "#{node['setup']['nginx_skip']}" == "true"
+  node.override['nginx']['default_root'] = node['setup']['download_dir']
   node.override['nginx']['port'] = 1880
   include_recipe 'nginx::default'
 end
@@ -63,25 +64,20 @@ all = files.split(/\s*,\s*/)
 
 spark_dir = "spark-sql-dependencies"
 
-base=node['setup']['download_dir']
+base = node['setup']['download_dir']
 
-# directories="hopsworks/#{node['hopsworks']['version']}, parquet, epipe/debian, epipe/rhel, hivecleaner/ubuntu, hivecleaner/centos, zookeeper-#{node['kzookeeper']['version']}, hops-libndbclient/#{node['ndb']['version']}, #{spark_dir}, dela, tensorflow"
-# dirs = directories.split(/\s*,\s*/)
-
-# for d in dirs 
-
-#   directory "#{base}/hopsworks/#{d}" do
-#     owner node['setup']['user']
-#     group node['setup']['group']
-#     mode "770"
-#     action :create
-#     recursive true
-#   end
-
-# end
+directory "#{base}" do
+  owner node['setup']['user']
+  group node['setup']['group']
+  mode "775"
+  action :create
+  recursive true
+  not_if { ::Dir.exists?("#{base}") }
+end
 
 
-spark_deps = "parquet-encoding-#{node['hadoop_spark']['parquet_version']}.jar, parquet-common-#{node['hadoop_spark']['parquet_version']}.jar, parquet-hadoop-#{node['hadoop_spark']['parquet_version']}.jar, parquet-jackson-#{node['hadoop_spark']['parquet_version']}.jar, parquet-column-#{node['hadoop_spark']['parquet_version']}.jar, parquet-format-2.3.1.jar, hive-exec-1.2.1.spark2.jar, spark-hive_2.11-2.2.0.jar, snappy-0.4.jar"
+
+spark_deps = "parquet-encoding-#{node['hadoop_spark']['parquet_version']}.jar, parquet-common-#{node['hadoop_spark']['parquet_version']}.jar, parquet-hadoop-#{node['hadoop_spark']['parquet_version']}.jar, parquet-jackson-#{node['hadoop_spark']['parquet_version']}.jar, parquet-column-#{node['hadoop_spark']['parquet_version']}.jar, parquet-format-2.3.1.jar, hive-exec-1.2.1.spark2.jar, spark-hive_#{node['scala']['version']}-#{node['hadoop_spark']['version']}.jar, snappy-0.4.jar"
 
 directory "#{base}/#{spark_dir}" do
   recursive true
