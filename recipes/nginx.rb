@@ -62,23 +62,28 @@ spark_dir = "spark-sql-dependencies"
 
 base="/var/www/html"
 
-directories="hopsworks/#{node['hopsworks']['version']} parquet epipe/debian epipe/rhel hivecleaner/ubuntu hivecleaner/centos zookeeper-#{node['kzookeeper']['version']} hops-libndbclient/#{node['ndb']['version']} #{spark_dir} dela tensorflow"
-dirs = directories.split(/\s*,\s*/)
+# directories="hopsworks/#{node['hopsworks']['version']}, parquet, epipe/debian, epipe/rhel, hivecleaner/ubuntu, hivecleaner/centos, zookeeper-#{node['kzookeeper']['version']}, hops-libndbclient/#{node['ndb']['version']}, #{spark_dir}, dela, tensorflow"
+# dirs = directories.split(/\s*,\s*/)
 
-for d in dirs 
+# for d in dirs 
 
-  directory "#{base}/hopsworks/#{d}" do
-    owner node['setup']['user']
-    group node['setup']['group']
-    mode "770"
-    action :create
-    recursive true
-  end
+#   directory "#{base}/hopsworks/#{d}" do
+#     owner node['setup']['user']
+#     group node['setup']['group']
+#     mode "770"
+#     action :create
+#     recursive true
+#   end
 
-end
+# end
 
 
 spark_deps = %w{ parquet-encoding-1.9.0.jar parquet-common-1.9.0.jar parquet-hadoop-1.9.0.jar parquet-jackson-1.9.0.jar parquet-column-1.9.0.jar parquet-format-2.3.1.jar hive-exec-1.2.1.spark2.jar spark-hive_2.11-2.2.0.jar snappy-0.4.jar }
+
+directory "#{base}/#{spark_dir}" do
+  recursive true
+  mode '0755'
+end
 
 for f in spark_deps
 
@@ -87,7 +92,7 @@ for f in spark_deps
     group node['setup']['group']
     source node['download_url'] + "/#{spark_dir}/#{f}"
     mode 0755
-    action :create
+    action :create_if_missing
   end
 
 end  
@@ -95,12 +100,17 @@ end
 
 for f in all
 
+  directory "#{base}/#{File.dirname(f)}" do
+    recursive true
+    mode '0755'
+  end
+
   remote_file "#{base}/#{f}" do
     user node['setup']['user']
     group node['setup']['group']
     source node['download_url'] + "/#{f}"
     mode 0755
-    action :create
+    action :create_if_missing
   end
 
 end  

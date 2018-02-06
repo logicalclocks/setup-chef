@@ -14,6 +14,10 @@ include_attribute "hive2"
 include_attribute "hopsworks"
 include_attribute "kkafka"
 include_attribute "kzookeeper"
+include_attribute "tensorflow"
+include_attribute "livy"
+include_attribute "hops"
+
 
 
 default["install"]["dir"]                          = ""
