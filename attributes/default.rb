@@ -51,4 +51,5 @@ default['setup']['default']['private_ips']         = ['']
 default['setup']['skip_nginx']                     = "false"
 default['setup']['download_dir']                   = '/var/www/html'
 
+default['setup']['disable_nw_mgr']                 = "false"
 

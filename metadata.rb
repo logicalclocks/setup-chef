@@ -99,3 +99,9 @@ attribute "cuda/dir",
 attribute "setup/default/private_ips",
           :description =>  "Ips for the hosts",
           :type => 'array'
+
+attribute "setup/disable_nw_mgr",
+          :description =>  "Disable the NetworkManager service",
+          :type => 'string'
+
+

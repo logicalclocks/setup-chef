@@ -69,6 +69,21 @@ if node['install']['addhost'].eql?("true")
   
 end
 
+
+if node['setup']['disable_nw_mgr'].eql?("true")
+
+bash "disable_NetworkManager" do
+  user "root"
+  ignore_failure true
+  code <<-EOF
+     service NetworkManager stop
+     service NetworkManager disable
+  EOF
+end
+
+  
+end
+
 bash "start_ping" do
   user "root"
   code <<-EOF
