@@ -55,15 +55,18 @@ if node['install']['addhost'].eql?("true")
       hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
       unique    true
-    end
-    bash "change_hostname" do
-      user "root"
-      code <<-EOF
-       hostname "#{node["install"]["hostname_prefix"]}#{idx}"
-    EOF
-    end
-    
+    end    
   end
+
+  my_ip = private_ip()
+  idx = my_ip.sub(/.*\./,'')
+  bash "change_hostname" do
+    user "root"
+    code <<-EOF
+      hostname "#{node["install"]["hostname_prefix"]}#{idx}"
+   EOF
+  end
+  
 end
 
 bash "start_ping" do
