@@ -58,7 +58,7 @@ if node['install']['addhost'].eql?("true")
     end    
   end
 
-  my_ip = private_ip()
+  my_ip = my_private_ip()
   idx = my_ip.sub(/.*\./,'')
   bash "change_hostname" do
     user "root"
