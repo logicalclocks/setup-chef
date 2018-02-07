@@ -1,6 +1,6 @@
-!/bin/bash
+#!/bin/bash
 
-netstat -tlpn > /tmp/hops_services.txt
+sudo netstat -tlpn > /tmp/hops_services.txt
 rm -f /tmp/ports.hops
 touch /tmp/ports.hops
 echo -n "'port' : {" > /tmp/ports.hops
@@ -19,6 +19,3 @@ do
   check_port
 done
 echo -n "}," > /tmp/ports.hops
-
-
-

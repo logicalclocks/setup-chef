@@ -36,6 +36,12 @@
 # pretty print JSON utility
 # package 'jq'
 
+case node['platform_family']
+#when "debian"
+when "rhel"
+ package "bind-utils"
+end  
+
 if node['install']['addhost'].eql?("true")
   node[:setup][:default][:private_ips].each_with_index do |ip, index| 
     hostsfile_entry "#{ip}" do
@@ -56,7 +62,7 @@ bash "start_ping" do
 end
 
 #
-# Ping all hosts
+# Ping all hosts, return with a failure msg if it can't ping any of the nodes
 #
 
 for n in node['setup']['default']['private_ips']
@@ -67,15 +73,23 @@ for n in node['setup']['default']['private_ips']
      if [ $? -ne 0 ] ; then
         echo ",\"#{n}\"" >> /tmp/ping.hops        
      fi
+     # Test reverse-dns lookup for all IPs
+     hostname #{n}
+     if [ $? -ne 0 ] ; then
+        echo ",\"#{n}\"" >> /tmp/reverse-dns.hops        
+     fi
   EOF
   end
 end 
+
 
 bash "ping_finish" do
     user "root"
     code <<-EOF
     line=$(cat /tmp/ping.hops | sed -e 's/,//')
     echo -n "${line}]," > /tmp/ping.hops        
+    line=$(cat /tmp/reverse-dns.hops | sed -e 's/,//')
+    echo -n "${line}]," > /tmp/reverse-dns.hops        
 EOF
 end
 
