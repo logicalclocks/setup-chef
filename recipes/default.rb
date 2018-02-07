@@ -45,9 +45,12 @@ end
 if node['install']['addhost'].eql?("true")
 
   hosts = node[:setup][:default][:private_ips]
-  hosts.sort!
+
   hosts.each_with_index do |ip, index|
-    idx = index+1
+    # Get the last part of the IP addrerss (C class of IP) as 'idx'
+    # and make the hostname something like 'hops1' for 192.168.0.1
+    idx = ip.sub(/.*\./,'')
+    Chef::Log.info("Here is th idx: " + idx)
     hostsfile_entry "#{ip}" do
       hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
