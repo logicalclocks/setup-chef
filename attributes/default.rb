@@ -44,7 +44,7 @@ default['cuda']['home']                            = "#{node['cuda']['dir']}/cud
 default['kagent']['enabled']                       = "false"
 
 
-default['setup']['user']                           = "vagrant"
+default['setup']['user']                           = node['install']['user'].empty? ? "vagrant" : node['install']['user']
 default['setup']['default']['public_ips']          = ['']
 default['setup']['default']['private_ips']         = ['']
 
