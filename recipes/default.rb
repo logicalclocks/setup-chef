@@ -49,6 +49,13 @@ if node['install']['addhost'].eql?("true")
       action    :create
       unique    true
     end
+    bash "change_hostname" do
+      user "root"
+      code <<-EOF
+       hostname "#{node["install"]["hostname_prefix"]}#{index}"
+    EOF
+    end
+    
   end
 end
 
@@ -58,6 +65,7 @@ bash "start_ping" do
     rm -f /tmp/ping.hops
     touch /tmp/ping.hops
     echo "{ 'non_reachable' : [" > /tmp/ping.hops        
+    echo "{ 'non_dns_accessible' : [" > /tmp/reverse-dns.hops        
   EOF
 end
 
@@ -199,6 +207,7 @@ bash "end_hops" do
   user "root"
   code <<-EOF
     cat /tmp/ping.hops > /tmp/hops.hops
+    cat /tmp/reverse-dns.hops >> /tmp/reverse-dns.hops
     cat /tmp/dirs.hops >> /tmp/hops.hops
     cat /tmp/devices.hops >> /tmp/hops.hops
     cat /tmp/cpus.hops >> /tmp/hops.hops
