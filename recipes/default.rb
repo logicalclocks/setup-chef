@@ -43,16 +43,20 @@ when "rhel"
 end  
 
 if node['install']['addhost'].eql?("true")
-  node[:setup][:default][:private_ips].each_with_index do |ip, index| 
+
+  hosts = node[:setup][:default][:private_ips]
+  hosts.sort!
+  hosts.each_with_index do |ip, index|
+    idx = index+1
     hostsfile_entry "#{ip}" do
-      hostname  "#{node["install"]["hostname_prefix"]}#{index}"
+      hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
       unique    true
     end
     bash "change_hostname" do
       user "root"
       code <<-EOF
-       hostname "#{node["install"]["hostname_prefix"]}#{index}"
+       hostname "#{node["install"]["hostname_prefix"]}#{idx}"
     EOF
     end
     
