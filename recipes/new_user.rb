@@ -29,6 +29,6 @@ kagent_keys "#{homedir}" do
   cb_user "#{node['setup']['new_user']}"
   cb_group "#{node['setup']['new_user']}"
   cb_name "setup"
-  cb_recipe "new_user"  
+  cb_recipe "master"  
   action :get_publickey
 end  
