@@ -86,11 +86,10 @@ if node['install']['addhost'].eql?("true")
 
   idx = my_ip.sub(/.*\./,'')
   setup_return "hostsfile_update" do
-      my_ip my_ip
-      idx idx
-      action :hostname
-    end
-  
+    my_ip my_ip
+    idx idx
+    action :hostname
+  end
 end
 
 
@@ -118,7 +117,7 @@ for n in node['setup']['default']['private_ips']
         echo ",\"#{n}\"" >> /tmp/ping.hops        
      fi
      # Test reverse-dns lookup for all IPs
-     hostname #{n}
+     host #{n}
      if [ $? -ne 0 ] ; then
         echo ",\"#{n}\"" >> /tmp/reverse-dns.hops        
      fi
