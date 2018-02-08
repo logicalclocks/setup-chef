@@ -32,10 +32,18 @@ kagent_keys "#{homedir}" do
 end  
 
 kagent_keys "#{homedir}" do
-  cb_user node['setup']['new_user']
+  cb_user 
   cb_group node['setup']['new_user']
   cb_name "setup"
   cb_recipe "master"  
   action :return_publickey
 end  
+
+bash "enable_ssh_into_myself" do
+  user node['setup']['new_user']
+  code <<-EOF
+     cp #{homedir}/.ssh/id_rsa.pub #{homedir}/.ssh/authorized_keys
+  EOF
+  not_if { ::File.exists?("#{homedir}/.ssh/authorized_keys") }
+end
 
