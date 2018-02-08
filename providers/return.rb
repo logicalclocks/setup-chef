@@ -5,7 +5,7 @@ action :measure do
 
   kagent_param "/home/#{node['setup']['user']}/.karamel" do
     executing_cookbook "setup"
-    executing_recipe "default"
+    executing_recipe "#{node['fqdn']}"
     cookbook "setup"
     recipe "default"
     param "#{node['fqdn']}"

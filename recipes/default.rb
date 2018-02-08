@@ -37,6 +37,8 @@
 # package 'jq'
 
 my_ip = my_private_ip()
+Chef::Log.info("My IP is: #{my_ip}")
+Chef::Log.info("My hostname is: #{node['fqdn']}")
 
 case node['platform_family']
 #when "debian"
