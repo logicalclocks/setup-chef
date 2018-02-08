@@ -6,6 +6,7 @@ user node["setup"]["new_user"] do
   home "#{homedir}"
   action :create
   shell "/bin/bash"
+  password node['setup']['new_user_password']  
   not_if "getent passwd #{node['setup']['new_user']}"
 end
 
@@ -15,6 +16,9 @@ group node["setup"]["new_user"] do
   append true
 end
 
+sudo node['setup']['new_user'] do
+  user "%#{node['setup']['new_user']}"
+end
 
 kagent_keys "#{homedir}" do
   cb_user node['setup']['new_user']

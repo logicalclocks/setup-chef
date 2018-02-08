@@ -43,7 +43,7 @@ depends 'ntp'
 depends 'magic_shell'
 depends 'nginx'
 depends 'hopsworks'
-
+depends 'sudo'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
@@ -108,6 +108,10 @@ attribute "setup/disable_nw_mgr",
 
 attribute "setup/new_user",
           :description => "New user to install  as",
+          :type => "string"
+
+attribute "setup/new_user_password",
+          :description => "New user password",
           :type => "string"
 
 

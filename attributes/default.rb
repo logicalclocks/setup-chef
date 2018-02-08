@@ -46,6 +46,7 @@ default['kagent']['enabled']                       = "false"
 
 default['setup']['user']                           = node['install']['user'].empty? ? "vagrant" : node['install']['user']
 default['setup']['new_user']                       = "hdp"
+default['setup']['new_user_password']              = ""
 default['setup']['default']['public_ips']          = ['']
 default['setup']['default']['private_ips']         = ['']
 
