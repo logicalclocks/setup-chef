@@ -1,5 +1,4 @@
 require 'json'
-
-actions :measure
+actions :measure, :hostname
 
 default_action :measure

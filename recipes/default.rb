@@ -76,27 +76,16 @@ if node['install']['addhost'].eql?("true")
     # Get the last part of the IP addrerss (C class of IP) as 'idx'
     # and make the hostname something like 'hops1' for 192.168.0.1
     idx = ip.sub(/.*\./,'')
-    Chef::Log.info("Here is th idx: " + idx)
-    hostsfile_entry "#{ip}" do
+    hostsfile_entry "#{node["install"]["hostname_prefix"]}#{idx}" do
       hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
       unique    true
     end    
   end
 
-
-  # https://www.itzgeek.com/how-tos/linux/centos-how-tos/change-hostname-in-centos-7-rhel-7.html
-  my_ip = my_private_ip()
-  idx = my_ip.sub(/.*\./,'')
-  bash "change_hostname" do
-    user "root"
-    code <<-EOF
-      set -e
-      # This changes both the 'static' and 'transient' hostname
-      hostnamectl set-hostname "#{node["install"]["hostname_prefix"]}#{idx}"
-      #systemctl restart systemd-hostnamed
-   EOF
-  end
+    setup_return "hostsfile_update" do
+      action :hostname
+    end
   
 end
 
@@ -191,7 +180,7 @@ end
 # Check CPUs available
 #
 
-bash "hops_cpus" do
+bash "hops_resources" do
     user "root"
     code <<-EOF
     rm -f /tmp/cpus.hops
@@ -199,57 +188,23 @@ bash "hops_cpus" do
     echo -n "'cpus' : '$cpus', " > /tmp/cpus.hops
     num_cpus=$(cat /proc/cpuinfo | grep 'processor' | wc -l)
     echo -n "'num_cpus' : '$num_cpus', " >> /tmp/cpus.hops
-    EOF
-end
 
-#
-# Check Memory available
-#
-
-bash "hops_mem" do
-    user "root"
-    code <<-EOF
     rm -f /tmp/mem.hops
     mem=$(free -m | head -2 | tail -n +2 | awk -F ' ' '{print $2}')
     echo -n "'mem' : '$mem', " > /tmp/mem.hops
-    EOF
-end
 
-#
-# Check Gpus available
-#
-
-bash "hops_gpus" do
-    user "root"
-    code <<-EOF
     rm -f /tmp/gpus.hops
     gpus=$(lspci -vnn | grep VGA -A 12)
     echo -n "'gpus' : '$gpus', " > /tmp/gpus.hops
-    EOF
-end
 
-
-#
-# Check Cuda Installed?
-#
-bash "hops_cuda" do
-    user "root"
-    code <<-EOF
     rm -f /tmp/cuda.hops
     cuda=$(ndvidia-smi -L)
     echo -n "'cuda' : '$cuda'" > /tmp/cuda.hops
-    EOF
-end
 
-#
-# hostnamectl
-#
-bash "hops_hostnamectl" do
-    user "root"
-    code <<-EOF
     rm -f /tmp/hostnamectl.hops
     hostctl=$(hostnamectl)
     echo -n "'hostnamectl' : '$hostctl'" > /tmp/hostnamectl.hops
+
     EOF
 end
 
