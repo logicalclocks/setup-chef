@@ -84,9 +84,10 @@ if node['install']['addhost'].eql?("true")
     end    
   end
 
-  
+  idx = my_ip.sub(/.*\./,'')
   setup_return "hostsfile_update" do
       my_ip my_ip
+      idx idx
       action :hostname
     end
   
