@@ -91,9 +91,10 @@ if node['install']['addhost'].eql?("true")
   bash "change_hostname" do
     user "root"
     code <<-EOF
-      hostname "#{node["install"]["hostname_prefix"]}#{idx}"
-      hostnamectl --transient set-hostname "#{node["install"]["hostname_prefix"]}#{idx}"
-      systemctl restart systemd-hostnamed
+      set -e
+      # This changes both the 'static' and 'transient' hostname
+      hostnamectl set-hostname "#{node["install"]["hostname_prefix"]}#{idx}"
+      #systemctl restart systemd-hostnamed
    EOF
   end
   
