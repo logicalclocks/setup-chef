@@ -36,10 +36,36 @@
 # pretty print JSON utility
 # package 'jq'
 
+
 case node['platform_family']
 #when "debian"
 when "rhel"
  package "bind-utils"
+
+  if node['setup']['disable_nw_mgr'].eql?("true")
+
+    bash "disable_NetworkManager" do
+      user "root"
+      ignore_failure true
+      code <<-EOF
+     service NetworkManager stop
+     service NetworkManager disable
+  EOF
+    end
+
+  else
+
+    bash "enable_NetworkManager" do
+      user "root"
+      ignore_failure true
+      code <<-EOF
+     service NetworkManager enable
+     service NetworkManager start
+  EOF
+    end
+
+  end
+
 end  
 
 if node['install']['addhost'].eql?("true")
@@ -58,31 +84,21 @@ if node['install']['addhost'].eql?("true")
     end    
   end
 
+
+  # https://www.itzgeek.com/how-tos/linux/centos-how-tos/change-hostname-in-centos-7-rhel-7.html
   my_ip = my_private_ip()
   idx = my_ip.sub(/.*\./,'')
   bash "change_hostname" do
     user "root"
     code <<-EOF
       hostname "#{node["install"]["hostname_prefix"]}#{idx}"
+      systemctl restart systemd-hostnamed
    EOF
   end
   
 end
 
 
-if node['setup']['disable_nw_mgr'].eql?("true")
-
-bash "disable_NetworkManager" do
-  user "root"
-  ignore_failure true
-  code <<-EOF
-     service NetworkManager stop
-     service NetworkManager disable
-  EOF
-end
-
-  
-end
 
 bash "start_ping" do
   user "root"
@@ -121,8 +137,8 @@ bash "ping_finish" do
     code <<-EOF
     line=$(cat /tmp/ping.hops | sed -e 's/,//')
     echo -n "${line}]," > /tmp/ping.hops        
-    line=$(cat /tmp/reverse-dns.hops | sed -e 's/,//')
-    echo -n "${line}]," > /tmp/reverse-dns.hops        
+    line2=$(cat /tmp/reverse-dns.hops | sed -e 's/,//')
+    echo -n "${line2}]," > /tmp/reverse-dns.hops        
 EOF
 end
 
@@ -223,6 +239,18 @@ bash "hops_cuda" do
     EOF
 end
 
+#
+# hostnamectl
+#
+bash "hops_hostnamectl" do
+    user "root"
+    code <<-EOF
+    rm -f /tmp/hostnamectl.hops
+    hostctl=$(hostnamectl)
+    echo -n "'hostnamectl' : '$hostctl'" > /tmp/hostnamectl.hops
+    EOF
+end
+
 
 #
 # Create a JSON with results that will be downloaded to Karamel server in $HOME/.karamel
@@ -232,13 +260,14 @@ bash "end_hops" do
   user "root"
   code <<-EOF
     cat /tmp/ping.hops > /tmp/hops.hops
-    cat /tmp/reverse-dns.hops >> /tmp/reverse-dns.hops
+    cat /tmp/reverse-dns.hops >> /tmp/hops.hops
     cat /tmp/dirs.hops >> /tmp/hops.hops
     cat /tmp/devices.hops >> /tmp/hops.hops
     cat /tmp/cpus.hops >> /tmp/hops.hops
     cat /tmp/mem.hops >> /tmp/hops.hops
     cat /tmp/gpus.hops >> /tmp/hops.hops
     cat /tmp/cuda.hops >> /tmp/hops.hops
+    cat /tmp/hostnamectl.hops >> /tmp/hops.hops
     echo -n " }" >> /tmp/hops.hops
     # JSON wants " (double quotes) not ' (single quotes)    
     perl -pi -e \"s/'/\\"/g\" /tmp/hops.hops
