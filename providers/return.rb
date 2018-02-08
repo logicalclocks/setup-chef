@@ -18,7 +18,7 @@ end
 action :hostname do
 
   # https://www.itzgeek.com/how-tos/linux/centos-how-tos/change-hostname-in-centos-7-rhel-7.html
-  my_ip = my_private_ip()
+  my_ip = #{new_resource.my_ip}
   idx = my_ip.sub(/.*\./,'')
   bash "change_hostname" do
     user "root"

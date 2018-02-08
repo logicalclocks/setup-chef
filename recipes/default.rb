@@ -36,6 +36,7 @@
 # pretty print JSON utility
 # package 'jq'
 
+my_ip = my_private_ip()
 
 case node['platform_family']
 #when "debian"
@@ -83,7 +84,9 @@ if node['install']['addhost'].eql?("true")
     end    
   end
 
-    setup_return "hostsfile_update" do
+  
+  setup_return "hostsfile_update" do
+      my_ip my_ip
       action :hostname
     end
   
