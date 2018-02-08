@@ -12,7 +12,7 @@ user node["setup"]["new_user"] do
   action :create
   shell "/bin/bash"
   password node['setup']['new_user_password']  
-  not_if "getent passwd #{node['setup']['new_user']}"
+#  not_if "getent passwd #{node['setup']['new_user']}"
 end
 
 group node["setup"]["new_user"] do
