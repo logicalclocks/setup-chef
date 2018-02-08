@@ -1,5 +1,10 @@
 homedir = "/home/#{node['setup']['new_user']}"
 
+group node["setup"]["new_user"] do
+  action :create
+  not_if "getent group #{node['setup']['new_user']}"
+end
+
 user node["setup"]["new_user"] do
   gid node["setup"]["new_user"]
   manage_home true
