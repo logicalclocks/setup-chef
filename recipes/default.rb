@@ -86,13 +86,25 @@ if node['install']['addhost'].eql?("true")
     end    
   end
 
-  idx = my_ip.sub(/.*\./,'')
-  Chef::Log.info("Idx is: #{idx}")
-  setup_return "hostsfile_update" do
-    my_ip my_ip
-    idx idx
-    action :hostname
+  id = my_ip.sub(/.*\./,'')
+  Chef::Log.info("Idx is: #{id}")
+
+  bash "change_hostname" do
+    user "root"
+    code <<-EOF
+      set -e
+      # This changes both the 'static' and 'transient' hostname
+      hostnamectl set-hostname "#{node['install']['hostname_prefix']}#{id}"
+   EOF
   end
+  
+  # setup_return "hostsfile_update" do
+  #   my_ip "#{my_ip}"
+  #   idx "#{id}"
+  #   action :hostname
+  # end
+
+
 end
 
 
