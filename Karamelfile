@@ -1,3 +1,7 @@
 dependencies: 
   - recipe: setup::install
   - recipe: setup::default
+  - recipe: setup::new_user
+    global:  
+      - setup::master
+  - recipe: setup::master

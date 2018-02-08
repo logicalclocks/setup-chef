@@ -49,6 +49,8 @@ recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
 recipe "setup::cuda", "Installs and configures cuda"
 recipe "setup::nginx", "Installs and configures nginx to host installation files"
+recipe "setup::new_user", "Installs a new user on all hosts"
+recipe "setup::master", "Installs a new user on this host and puts its public key on all other hosts"
 recipe "setup::purge", "Deletes cuda and everything else"
 
 
@@ -103,5 +105,9 @@ attribute "setup/default/private_ips",
 attribute "setup/disable_nw_mgr",
           :description =>  "Disable the NetworkManager service",
           :type => 'string'
+
+attribute "setup/new_user",
+          :description => "New user to install  as",
+          :type => "string"
 
 
