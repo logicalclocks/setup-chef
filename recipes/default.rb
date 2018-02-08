@@ -76,7 +76,7 @@ if node['install']['addhost'].eql?("true")
     # Get the last part of the IP addrerss (C class of IP) as 'idx'
     # and make the hostname something like 'hops1' for 192.168.0.1
     idx = ip.sub(/.*\./,'')
-    hostsfile_entry "#{node["install"]["hostname_prefix"]}#{idx}" do
+    hostsfile_entry "#{ip}" do
       hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
       unique    true
