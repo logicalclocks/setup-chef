@@ -85,6 +85,7 @@ if node['install']['addhost'].eql?("true")
   end
 
   idx = my_ip.sub(/.*\./,'')
+  Chef::Log.info("Idx is: #{idx}")
   setup_return "hostsfile_update" do
     my_ip my_ip
     idx idx

@@ -25,7 +25,7 @@ action :hostname do
     code <<-EOF
       set -e
       # This changes both the 'static' and 'transient' hostname
-      hostnamectl set-hostname "#{node["install"]["hostname_prefix"]}#{idx}"
+      hostnamectl set-hostname "#{node['install']['hostname_prefix']}#{idx}"
    EOF
   end
 
