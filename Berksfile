@@ -7,7 +7,7 @@ cookbook 'hopsworks', github: "hopshadoop/hopsworks-chef", branch: "downloader"
 cookbook 'java'
 cookbook 'conda', github: "hopshadoop/conda-chef", branch: "master"
 cookbook 'kagent', github: "hopshadoop/kagent-chef", branch: "master"
-cookbook 'hops', github: "hopshadoop/hops-hadoop-chef", branch: "master"
+cookbook 'hops', github: "hopshadoop/hops-hadoop-chef", branch: "downloader"
 cookbook 'ndb', github: "hopshadoop/ndb-chef", branch: "master"
 cookbook 'hadoop_spark', github: "hopshadoop/spark-chef", branch: "downloader"
 cookbook 'flink', github: "hopshadoop/flink-chef", branch: "master"
