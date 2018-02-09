@@ -2,7 +2,7 @@ apt_update 'update' if platform_family?('debian')
 
 package 'curl'
 
-if "#{node['setup']['nginx_skip']}" == "false"
+if "#{node['setup']['nginx_skip']}" != "true"
   node.override['nginx']['default_root'] = node['setup']['download_dir']
   node.override['nginx']['port'] = 1880
   include_recipe 'nginx::default'
