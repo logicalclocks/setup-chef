@@ -115,3 +115,6 @@ attribute "setup/new_user_password",
           :type => "string"
 
 
+attribute "setup/download_dir",
+          :description => "Dir to download binaries to",
+          :type => "string"
