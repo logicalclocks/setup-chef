@@ -4,6 +4,7 @@ package 'curl'
 
 if "#{node['setup']['nginx_skip']}" != "true"
   package 'openssl'
+  node.override['nginx']['auth_request']['url'] = "#{node['download_url']}/nginx.tar.gz"
   node.override['nginx']['default_root'] = node['setup']['download_dir']
   node.override['nginx']['port'] = 1880
   include_recipe 'nginx::default'
