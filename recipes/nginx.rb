@@ -45,6 +45,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "tfspark.zip" + ", " +
   "tensorflow/hops-tensorflow-#{node['tensorflow']['hopstf_version']}.jar" + ", " +
   "tensorflow/hops-tensorflow-#{node['tensorflow']['hopstf_version']}.jar" + ", " +
+  "tensorflow/mnist.tar.gz" + ", " +
   "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}_linux.run" + ", " +
   "#{node['cuda']['driver_version']}" + ", " +
   "cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
@@ -62,11 +63,13 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "l_mpi_2018.0.128.tgz" + ", " +
   "#{node['cuda']['nccl_version']}.txz" + ", " +
   "openmpi/#{node['openmpi']['version']}" + ", " +
-  "/tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  "/tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  "/tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
-  "/tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  "tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  "tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
   "hive-jdbc-#{node['hive2']['version']}-standalone.jar"  + ", " +
+  "hops-util-#{node['hops']['hopsutil_version']}.jar" + " " +
+  "hops-spark-#{node['hops']['examples_version']}.jar" + ", " +       
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)
