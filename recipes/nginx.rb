@@ -11,6 +11,7 @@ end
 
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
   "authbind_2.1.1.tar.gz"  + ", " +
+  "dtrx.tar.gz"  + ", " + 
   "influxdb-#{node['influxdb']['version']}_linux_amd64.tar.gz" + ", " +
   "grafana-#{node['grafana']['version']}.linux-x64.tar.gz" + ", " +
   "telegraf-#{node['telegraf']['version']}_linux_amd64.tar.gz" + ", " +
