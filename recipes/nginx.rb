@@ -33,6 +33,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "mysql-connector-java-#{node['hive2']['mysql_connector_version']}-bin.jar" + ", " +
   "hivecleaner/#{node['platform']}/hivecleaner-#{node['hive2']['hive_cleaner']['version']}.tar.gz" + ", " +
   "apache-tez-#{node['tez']['version']}.tar.gz" + ", " +
+  "slider-#{node['slider']['version']}-all.tar.gz" + ", " +
   "spark-#{node['hadoop_spark']['version']}-bin-without-hadoop.tgz" + ", " +
   "flink-" + node['flink']['version'] + "-bin-hadoop" + node['flink']['hadoop_version'] + "-scala_" + node['flink']['scala_version'] + ".tgz" + ", " +
   "epipe/#{node['platform_family']}/epipe-#{node['epipe']['version']}.tar.gz" + ", " +
@@ -69,7 +70,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
   "hive-jdbc-#{node['hive2']['version']}-standalone.jar"  + ", " +
   "hops-util-#{node['hops']['hopsutil_version']}.jar" + " " +
-  "hops-spark-#{node['hops']['examples_version']}.jar" + ", " +       
+  "hops-spark-#{node['hops']['examples_version']}.jar" + ", " +
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)
