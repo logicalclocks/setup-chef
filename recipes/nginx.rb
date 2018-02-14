@@ -128,3 +128,28 @@ for f in all
   end
 
 end  
+
+remote_file "#{base}/schema.sql" do
+  source "https://raw.githubusercontent.com/hopshadoop/hops-metadata-dal-impl-ndb/master/schema/schema.sql"
+  owner node['setup']['user']
+  mode 0755
+  action :create
+end
+
+versions = node['hops']['versions'].split(/\s*,\s*/)
+previous_version=""
+if versions.any?
+   previous_version=versions.last
+end
+
+prev="2.8.2.1"
+for version in versions do
+  remote_file "#{base}/update-schema_#{prev}_to_#{version}.sql" do
+    source "https://raw.githubusercontent.com/hopshadoop/hops-metadata-dal-impl-ndb/master/schema/update-schema_#{prev}_to_#{version}.sql"
+    owner node['setup']['user']
+    mode 0755
+    action :create
+  end
+  prev=version
+end
+
