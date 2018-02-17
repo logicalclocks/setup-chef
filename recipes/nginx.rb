@@ -11,7 +11,8 @@ if "#{node['setup']['nginx_skip']}" != "true"
 end
 
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
-  "authbind_2.1.1.tar.gz"  + ", " +
+       "authbind_2.1.1.tar.gz"  + ", " +
+  "zookeeper-#{node['kzookeeper']['version']}/zookeeper-#{node['kzookeeper']['version']}.tar.gz"  + ", " +
   "influxdb-#{node['influxdb']['version']}_linux_amd64.tar.gz" + ", " +
   "grafana-#{node['grafana']['version']}.linux-x64.tar.gz" + ", " +
   "telegraf-#{node['telegraf']['version']}_linux_amd64.tar.gz" + ", " +
