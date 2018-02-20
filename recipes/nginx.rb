@@ -71,7 +71,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
   "hive-jdbc-#{node['hive2']['version']}-standalone.jar"  + ", " +
   "hops-util-#{node['hops']['hopsutil_version']}.jar" + ", " +
-  "hops-spark-#{node['hops']['examples_version']}.jar" + ", " +
+  "hops-spark-#{node['hops']['hopsexamples_version']}.jar" + ", " +
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)
