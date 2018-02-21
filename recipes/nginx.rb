@@ -156,3 +156,9 @@ for version in versions do
   prev=version
 end
 
+remote_file "#{base}/update-schema_#{prev}_to_#{node['hops']['version']}.sql" do
+  source "https://raw.githubusercontent.com/hopshadoop/hops-metadata-dal-impl-ndb/master/schema/update-schema_#{prev}_to_#{node['hops']['version']}.sql"
+  owner node['setup']['user']
+  mode 0755
+  action :create
+end
