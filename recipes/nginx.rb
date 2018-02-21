@@ -26,7 +26,6 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "libhopsyarn-#{node['hops']['version']}-#{node['ndb']['version']}.so" + ", " +
   "nvidia-management-#{node['hops']['version']}-#{node['ndb']['version']}.jar" + ", " +
   "libhopsnvml-#{node['hops']['version']}.so" + ", " +
-  "hops-#{node['hops']['version']}-#{node['ndb']['version']}.sql" + ", " +
   "livy-server-#{node['livy']['version']}.zip" + ", " +
   "#{node['zeppelin']['name']}.tar.gz" + ", " +
   "zeppelin-hopshive-#{node['zeppelin']['version']}.tar.gz" + ", " +
