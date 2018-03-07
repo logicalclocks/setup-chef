@@ -1,6 +1,9 @@
 dependencies: 
   - recipe: setup::install
   - recipe: setup::default
+  - recipe: setup::nginx
+    global:  
+      - setup::default
   - recipe: setup::new_user
     global:  
       - setup::master
