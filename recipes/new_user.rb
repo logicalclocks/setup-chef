@@ -22,7 +22,7 @@ group node["setup"]["new_user"] do
 end
 
 sudo node['setup']['new_user'] do
-  user "#{node['setup']['new_user']}"
+  user "%#{node['setup']['new_user']}"
 end
 
 kagent_keys "#{homedir}" do
