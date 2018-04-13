@@ -11,7 +11,7 @@ if "#{node['setup']['nginx_skip']}" != "true"
 end
 
 
-if platform_family?('redhat')
+if platform_family?('rhel')
   execute 'yum_update_upgrade' do
    command 'sudo yum update'
   end
