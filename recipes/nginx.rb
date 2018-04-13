@@ -1,6 +1,17 @@
-apt_update 'update' if platform_family?('debian')
 
 package 'curl'
+
+case node['platform_family']
+when 'debian'
+  apt_update 'update'
+when 'rhel'
+ Chef::Log.info "REDHAT !!!"
+  execute 'yum_update_upgrade' do
+   command 'sudo yum update -y'
+  end
+  yum_package 'openssl-libs'
+end  
+
 
 if "#{node['setup']['nginx_skip']}" != "true"
   package 'openssl'
@@ -11,13 +22,6 @@ if "#{node['setup']['nginx_skip']}" != "true"
 end
 
 
-if platform_family?('rhel')
-  execute 'yum_update_upgrade' do
-   command 'sudo yum update'
-  end
-  package 'openssl-libs'
-  package 'openssl'
-end  
 
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
        "authbind_2.1.1.tar.gz"  + ", " +
