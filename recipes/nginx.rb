@@ -10,7 +10,11 @@ if "#{node['setup']['nginx_skip']}" != "true"
   include_recipe 'nginx::default'
 end
 
+
 if platform_family?('redhat')
+  execute 'yum_update_upgrade' do
+   command 'sudo yum update'
+  end
   package 'openssl-libs'
   package 'openssl'
 end  
