@@ -10,6 +10,11 @@ if "#{node['setup']['nginx_skip']}" != "true"
   include_recipe 'nginx::default'
 end
 
+if platform_family?('redhat')
+  package 'openssl-libs'
+  package 'openssl'
+end  
+
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
        "authbind_2.1.1.tar.gz"  + ", " +
   "zookeeper-#{node['kzookeeper']['version']}/zookeeper-#{node['kzookeeper']['version']}.tar.gz"  + ", " +
