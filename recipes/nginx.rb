@@ -10,8 +10,18 @@ if "#{node['setup']['nginx_skip']}" != "true"
   include_recipe 'nginx::default'
 end
 
+cuda_patches = ""
+for i in 1..node['cuda']['num_patches'] do
+  patch_version  = node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + ".#{i}" 
+  patch_url  = "cuda_#{patch_version}_linux.run, "
+  cuda_patches = cuda_patches + patch_url
+end
+
+
+
 files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86_64.sh" + ", " +
        "authbind_2.1.1.tar.gz"  + ", " +
+  cuda_patches +
   "zookeeper-#{node['kzookeeper']['version']}/zookeeper-#{node['kzookeeper']['version']}.tar.gz"  + ", " +
   "influxdb-#{node['influxdb']['version']}_linux_amd64.tar.gz" + ", " +
   "grafana-#{node['grafana']['version']}.linux-x64.tar.gz" + ", " +
