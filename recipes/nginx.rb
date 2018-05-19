@@ -86,6 +86,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "hops-examples-spark-#{node['hops']['hopsexamples_version']}.jar" + ", " +
   "hops-examples-flink-#{node['hops']['hopsexamples_version']}.jar" + ", " +
   "hops-examples-hive-#{node['hops']['hopsexamples_version']}.jar" + ", " +
+  "sparkmagic-#{node['jupyter']['sparkmagic']['version']}.tar.gz" + ", " +
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)
