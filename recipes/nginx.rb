@@ -45,7 +45,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "libhopsyarn-#{node['hops']['version']}-#{node['ndb']['version']}.so" + ", " +
   "nvidia-management-#{node['hops']['version']}-#{node['ndb']['version']}.jar" + ", " +
   "libhopsnvml-#{node['hops']['version']}.so" + ", " +
-  "livy-server-#{node['livy']['version']}.zip" + ", " +
+  "livy-#{node['livy']['version']}.zip" + ", " +
   "#{node['zeppelin']['name']}.tar.gz" + ", " +
   "zeppelin-hopshive-#{node['zeppelin']['version']}.tar.gz" + ", " +
   "apache-hive-#{node['hive2']['version']}-bin.tar.gz" + ", " +
@@ -56,7 +56,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "spark-#{node['hadoop_spark']['version']}-bin-without-hadoop.tgz" + ", " +
   "flink-" + node['flink']['version'] + "-bin-hadoop" + node['flink']['hadoop_version'] + "-scala_" + node['flink']['scala_version'] + ".tgz" + ", " +
   "epipe/#{node['platform_family']}/epipe-#{node['epipe']['version']}.tar.gz" + ", " +
-  "dela/dela-#{node['dela']['version']}.jar" + ", " +
+  "dela/#{node['dela']['version']}/dela.jar" + ", " +
   "kafka_#{node['kkafka']['scala_version']}-#{node['kkafka']['version']}.tgz" + ", " +
   "hops-kafka-authorizer-#{node['kkafka']['authorizer_version']}.jar" + ", " +
   "elasticsearch-#{node['elastic']['version']}.tar.gz" + ", " +
