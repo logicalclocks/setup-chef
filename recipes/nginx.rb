@@ -67,7 +67,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "tensorflow/mnist.tar.gz" + ", " +
   "cuda_#{node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + "_" + node['cuda']['build_version']}_linux.run" + ", " +
   "#{node['cuda']['driver_version']}" + ", " +
-  "cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
+  #"cuda_#{node['cuda']['version_patch']}_linux.run" + ", " +
   "cudnn-#{node['cuda']['major_version']}-linux-x64-v#{node['cudnn']['version']}.tgz" + ", " +
   "bazel-#{node['bazel']['version']}-installer-linux-x86_64.sh" + ", " +
   "payara-#{node['glassfish']['version']}.zip" + ", " +
