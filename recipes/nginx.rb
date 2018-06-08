@@ -53,7 +53,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "hivecleaner/#{node['platform']}/hivecleaner-#{node['hive2']['hive_cleaner']['version']}.tar.gz" + ", " +
   "apache-tez-#{node['tez']['version']}.tar.gz" + ", " +
   "slider-#{node['slider']['version']}-all.tar.gz" + ", " +
-  "spark-#{node['hadoop_spark']['version']}-bin-without-hadoop.tgz" + ", " +
+  "spark-#{node['hadoop_spark']['version']}-bin-without-hadoop-with-hive-with-r.tgz" + ", " +
   "flink-" + node['flink']['version'] + "-bin-hadoop" + node['flink']['hadoop_version'] + "-scala_" + node['flink']['scala_version'] + ".tgz" + ", " +
   "epipe/#{node['platform_family']}/epipe-#{node['epipe']['version']}.tar.gz" + ", " +
   "dela/#{node['dela']['version']}/dela.jar" + ", " +
@@ -82,11 +82,11 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "l_mpi_2018.0.128.tgz" + ", " +
   "#{node['cuda']['nccl_version']}.txz" + ", " +
   "openmpi/#{node['openmpi']['version']}" + ", " +
-  # "tensorflow-tensorflow-graph-hops-#{node['tensorflow']['version']}.tar.gz" + ", " +
-  # "tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  # "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  # "tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
-  # "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  "tensorflow-tensorflow-graph-hops-#{node['tensorflow']['version']}.tar.gz" + ", " +
+  "tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  "tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
   "hive-jdbc-#{node['hive2']['version']}-standalone.jar"  + ", " +
   "hops-util-#{node['hops']['hopsutil_version']}.jar" + ", " +
   "hops-examples-spark-#{node['hops']['hopsexamples_version']}.jar" + ", " +
