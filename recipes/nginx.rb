@@ -10,7 +10,7 @@ when 'rhel'
    command 'sudo yum update -y'
   end
   yum_package 'openssl-libs'
-end  
+end
 
 
 if "#{node['setup']['nginx_skip']}" != "true"
@@ -23,7 +23,7 @@ end
 
 cuda_patches = ""
 for i in 1..node['cuda']['num_patches'] do
-  patch_version  = node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + ".#{i}" 
+  patch_version  = node['cuda']['major_version'] + "." + node['cuda']['minor_version'] + ".#{i}"
   patch_url  = "cuda_#{patch_version}_linux.run, "
   cuda_patches = cuda_patches + patch_url
 end
@@ -82,7 +82,7 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "l_mpi_2018.0.128.tgz" + ", " +
   "#{node['cuda']['nccl_version']}.txz" + ", " +
   "openmpi/#{node['openmpi']['version']}" + ", " +
-  "tensorflow-tensorflow-graph-hops-#{node['tensorflow']['version']}.tar.gz" + ", " +
+  "tensorflow-graph-hops-#{node['tensorflow']['version']}.tar.gz" + ", " +
   "tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
   "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
   "tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
@@ -131,7 +131,7 @@ for f in deps
     action :create_if_missing
   end
 
-end  
+end
 
 
 for f in all
@@ -149,7 +149,7 @@ for f in all
     action :create_if_missing
   end
 
-end  
+end
 
 remote_file "#{base}/schema.sql" do
   source "https://raw.githubusercontent.com/hopshadoop/hops-metadata-dal-impl-ndb/master/schema/schema.sql"
