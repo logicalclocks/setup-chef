@@ -83,10 +83,10 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "#{node['cuda']['nccl_version']}.txz" + ", " +
   "openmpi/#{node['openmpi']['version']}" + ", " +
   "tensorflow-graph-hops-#{node['tensorflow']['version']}.tar.gz" + ", " +
-  "tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
-  "tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
-  "tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  #"tensorflow-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  #"tensorflow_gpu-#{node["tensorflow"]["version"]}-cp36-cp36m-manylinux1_x86_64.whl" + ", " +
+  #"tensorflow-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
+  #"tensorflow_gpu-#{node["tensorflow"]["version"]}-cp27-cp27mu-manylinux1_x86_64.whl"  + ", " +
   "hive-jdbc-#{node['hive2']['version']}-standalone.jar"  + ", " +
   "hops-util-#{node['hops']['hopsutil_version']}.jar" + ", " +
   "hops-examples-spark-#{node['hops']['hopsexamples_version']}.jar" + ", " +
