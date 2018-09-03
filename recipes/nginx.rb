@@ -93,7 +93,8 @@ files= "Anaconda#{node["conda"]["python"]}-#{node["conda"]["version"]}-Linux-x86
   "hops-examples-flink-#{node['hops']['hopsexamples_version']}.jar" + ", " +
   "hops-examples-hive-#{node['hops']['hopsexamples_version']}.jar" + ", " +
   "sparkmagic-#{node['jupyter']['sparkmagic']['version']}.tar.gz" + ", " +
-  "mmlspark-#{node['mml']['version']}-py2.py3-none-any.whl" + ", " +       
+  "mmlspark-#{node['mml']['version']}-py2.py3-none-any.whl" + ", " +
+  "docker.tgz" + ", " +              
   "bcprov-jdk15on-149.jar"
 
 all = files.split(/\s*,\s*/)
