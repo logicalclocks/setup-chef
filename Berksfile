@@ -48,5 +48,4 @@ cookbook 'nginx'
 
 cookbook 'openssl', '~> 4.4.0'
 cookbook 'hostsfile', '~> 2.4.5'
-cookbook 'poise-python', '~> 1.4.0'
 cookbook 'sudo', '~> 4.0.0'

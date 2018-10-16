@@ -2,12 +2,12 @@
 # contents = "
 # { "#{node['host']}" : {
 #      "non_reachable_hosts" : ["gpu1","hadoop2"],
-#      "dirs_not_empty" : ["/srv/hops", "/disks/disk1"],                       
+#      "dirs_not_empty" : ["/srv/hops", "/disks/disk1"],
 #      "busy_ports" : ['3306/mysqld','8080/httpd'],
 #      "device_ids" : ['/dev/sdd','/dev/sda1','/dev/sda2'],
-#      "device_capacities" : ['400GB','4TB','16TB'],  
+#      "device_capacities" : ['400GB','4TB','16TB'],
 #      "device_free" : ['200GB','3TB','16TB'],
-#      "memory_available" : '256GB',  
+#      "memory_available" : '256GB',
 #      "cpu_info" : 'Intel(R) Core(TM) i7-6820HQ CPU @ 2.70GHz',
 #      "num_cpus" : 14,
 #      "gpu_info" : '',
@@ -24,7 +24,7 @@
 # 1. Use 'netstat -lptn' to check if services are running on port: 80, 8080, 443, 8181, 50700, etc ...
 
 # 2. Check that /srv/hops is writable and empty. Create it, make it owned by root with permissions '755'
-  
+
 # 3. Get available disk space ( df -kh) for each hard-disk, get #cpus per host, get 'free -m' for each host.
 
 # 4. Check if there is a GPU installed on the machine (lspci -vnn | grep VGA -A 12)
@@ -69,7 +69,7 @@ when "rhel"
 
   end
 
-end  
+end
 
 if node['install']['addhost'].eql?("true")
 
@@ -83,7 +83,7 @@ if node['install']['addhost'].eql?("true")
       hostname  "#{node["install"]["hostname_prefix"]}#{idx}"
       action    :create
       unique    true
-    end    
+    end
   end
 
   id = my_ip.sub(/.*\./,'')
@@ -97,7 +97,7 @@ if node['install']['addhost'].eql?("true")
       hostnamectl set-hostname "#{node['install']['hostname_prefix']}#{id}"
    EOF
   end
-  
+
   # setup_return "hostsfile_update" do
   #   my_ip "#{my_ip}"
   #   idx "#{id}"
@@ -114,8 +114,8 @@ bash "start_ping" do
   code <<-EOF
     rm -f /tmp/ping.hops
     touch /tmp/ping.hops
-    echo "{ 'non_reachable' : [" > /tmp/ping.hops        
-    echo "{ 'non_dns_accessible' : [" > /tmp/reverse-dns.hops        
+    echo "{ 'non_reachable' : [" > /tmp/ping.hops
+    echo "{ 'non_dns_accessible' : [" > /tmp/reverse-dns.hops
   EOF
 end
 
@@ -126,28 +126,28 @@ end
 for n in node['setup']['default']['private_ips']
   bash "ping_host_#{n}" do
     user "root"
-    code <<-EOF 
+    code <<-EOF
      ping -c 2 #{n}
      if [ $? -ne 0 ] ; then
-        echo ",\"#{n}\"" >> /tmp/ping.hops        
+        echo ",\"#{n}\"" >> /tmp/ping.hops
      fi
      # Test reverse-dns lookup for all IPs
      host #{n}
      if [ $? -ne 0 ] ; then
-        echo ",\"#{n}\"" >> /tmp/reverse-dns.hops        
+        echo ",\"#{n}\"" >> /tmp/reverse-dns.hops
      fi
   EOF
   end
-end 
+end
 
 
 bash "ping_finish" do
     user "root"
     code <<-EOF
     line=$(cat /tmp/ping.hops | sed -e 's/,//')
-    echo -n "${line}]," > /tmp/ping.hops        
+    echo -n "${line}]," > /tmp/ping.hops
     line2=$(cat /tmp/reverse-dns.hops | sed -e 's/,//')
-    echo -n "${line2}]," > /tmp/reverse-dns.hops        
+    echo -n "${line2}]," > /tmp/reverse-dns.hops
 EOF
 end
 
@@ -244,7 +244,7 @@ bash "end_hops" do
     cat /tmp/cuda.hops >> /tmp/hops.hops
     cat /tmp/hostnamectl.hops >> /tmp/hops.hops
     echo -n " }" >> /tmp/hops.hops
-    # JSON wants " (double quotes) not ' (single quotes)    
+    # JSON wants " (double quotes) not ' (single quotes)
     perl -pi -e \"s/'/\\"/g\" /tmp/hops.hops
     # cat /tmp/hops.hops | jq > /tmp/hops.pretty
     #mv -f /tmp/hops.pretty /tmp/hops.hops
