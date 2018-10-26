@@ -5,15 +5,15 @@ when 'rhel'
   package 'openssl-libs'
 end
 
-if "#{node['setup']['nginx_skip']}" != "true"
+if "#{node['setup']['nginx']['skip']}" != "true"
   package 'openssl'
   node.override['nginx']['auth_request']['url'] = "#{node['download_url']}/nginx.tar.gz"
-  node.override['nginx']['default_root'] = node['setup']['download_dir']
-  node.override['nginx']['port'] = 1880
+  node.override['nginx']['default_root'] = node['setup']['nginx']['download_dir']
+  node.override['nginx']['port'] = node['setup']['nginx']['port']
   include_recipe 'nginx::default'
 end
 
-directory node['setup']['download_dir'] do
+directory node['setup']['nginx']['download_dir'] do
   owner "root"
   group "root"
   recursive true
@@ -38,7 +38,7 @@ res.each do |v|
   if v =~ /#{node['download_url']}.+/ || v =~ /http:\/\/snurran.sics.se\/hops\/.+/
     bash "download-#{v}" do
       user 'root'
-      cwd node['setup']['download_dir']
+      cwd node['setup']['nginx']['download_dir']
       code <<-EOH
         wget --mirror --no-parent -X "*" --reject "index.html*" -e robots=off --no-host-directories #{v}
       EOH
