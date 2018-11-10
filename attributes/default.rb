@@ -30,19 +30,7 @@ default['install']['hostname_prefix']              = "hops"
 
 node.default['download_url']                       = "http://193.10.67.171/hops"
 
-# Default values for configuration parameters
-default['cuda']['version']                         = "0.1.0"
-default['cuda']['user']                            = node['install']['user'].empty? ? "cuda" : node['install']['user']
-default['cuda']['group']                           = node['install']['user'].empty? ? "cuda" : node['install']['user']
-default['cuda']['certs_group']                     = "certs"
-
-
-default['cuda']['dir']                             = node['install']['dir'].empty? ? "/var/lib" : node['install']['dir']
-default['cuda']['base_dir']                        = "#{node['cuda']['dir']}/cuda"
-default['cuda']['home']                            = "#{node['cuda']['dir']}/cuda-#{node['cuda']['version']}"
-
 default['kagent']['enabled']                       = "false"
-
 
 default['setup']['user']                           = node['install']['user'].empty? ? "vagrant" : node['install']['user']
 default['setup']['new_user']                       = "hdp"
@@ -50,8 +38,9 @@ default['setup']['new_user_password']              = ""
 default['setup']['default']['public_ips']          = ['']
 default['setup']['default']['private_ips']         = ['']
 
-default['setup']['skip_nginx']                     = "false"
-default['setup']['download_dir']                   = '/var/www/html'
+default['setup']['nginx']['skip']                  = "false"
+default['setup']['nginx']['download_dir']          = "/var/www/html"
+default['setup']['nginx']['port']                  = "1880"
 
 default['setup']['disable_nw_mgr']                 = "false"
 

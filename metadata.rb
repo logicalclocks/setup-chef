@@ -4,11 +4,11 @@ name             "setup"
 license          "AGPL 3.0"
 description      "Installs/Configures the Setup cookbook used by Hops"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.3.0"
+version          "0.6.0"
 source_url       "https://github.com/logicalclocks/setup-chef"
 
 
-%w{ ubuntu debian centos }.each do |os|
+%w{ ubuntu centos }.each do |os|
   supports os
 end
 
@@ -35,7 +35,6 @@ depends 'hopslog'
 depends 'hopsmonitor'
 depends 'hive2'
 depends 'conda'
-depends 'poise-python'
 depends 'openssl'
 depends 'sudo'
 depends 'hostsfile'
@@ -47,10 +46,9 @@ depends 'sudo'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
-recipe "setup::cuda", "Installs and configures cuda"
 recipe "setup::nginx", "Installs and configures nginx to host installation files"
 recipe "setup::new_user", "Installs a new user on all hosts"
-recipe "setup::master", "Installs a new user on this host and puts its public key on all other hosts"
+recipe "setup::master", "Installs a new user on this host and puts its public key on  other hosts"
 recipe "setup::purge", "Deletes cuda and everything else"
 
 
@@ -86,18 +84,6 @@ attribute "setup/user",
           :description => "User to install the services as",
           :type => "string"
 
-attribute "cuda/user",
-          :description => "Username to run cuda as",
-          :type => 'string'
-
-attribute "cuda/group",
-          :description => "group to run cuda as",
-          :type => 'string'
-
-attribute "cuda/dir",
-          :description => "Installation directory for cuda",
-          :type => 'string'
-
 attribute "setup/default/private_ips",
           :description =>  "Ips for the hosts",
           :type => 'array'
@@ -114,7 +100,15 @@ attribute "setup/new_user_password",
           :description => "New user password",
           :type => "string"
 
-
-attribute "setup/download_dir",
+attribute "setup/nginx/download_dir",
           :description => "Dir to download binaries to",
           :type => "string"
+
+attribute "setup/nginx/skip",
+          :description => "True to skip nginx installation",
+          :type => "string"
+
+attribute "setup/nginx/port",
+          :description => "Port on which nginx should listen",
+          :type => "string"
+  
