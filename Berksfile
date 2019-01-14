@@ -31,6 +31,8 @@ cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "0.8"
 
 cookbook 'hive2', github: "logicalclocks/hive-chef", branch: "0.8"
 
+cookbook 'kube-hops', github: "logicalclocks/kube-hops-chef", branch: "0.8"
+
 cookbook 'graphite', '~> 1.0.4'
 cookbook 'simple-logstash', '~> 0.2.4'
 

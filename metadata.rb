@@ -43,6 +43,7 @@ depends 'magic_shell'
 depends 'nginx'
 depends 'hopsworks'
 depends 'sudo'
+depends 'kube-hops'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
@@ -111,4 +112,4 @@ attribute "setup/nginx/skip",
 attribute "setup/nginx/port",
           :description => "Port on which nginx should listen",
           :type => "string"
-  
+
