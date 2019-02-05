@@ -4,7 +4,7 @@ name             "setup"
 license          "AGPL 3.0"
 description      "Installs/Configures the Setup cookbook used by Hops"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.6.0"
+version          "0.10.0"
 source_url       "https://github.com/logicalclocks/setup-chef"
 
 
@@ -43,6 +43,7 @@ depends 'magic_shell'
 depends 'nginx'
 depends 'hopsworks'
 depends 'sudo'
+depends 'hops_airflow'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
@@ -111,4 +112,4 @@ attribute "setup/nginx/skip",
 attribute "setup/nginx/port",
           :description => "Port on which nginx should listen",
           :type => "string"
-  
+

@@ -17,6 +17,7 @@ include_attribute "kzookeeper"
 include_attribute "tensorflow"
 include_attribute "livy"
 include_attribute "hops"
+include_attribute "hops_airflow"
 
 
 

@@ -31,6 +31,8 @@ cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "master"
 
 cookbook 'hive2', github: "logicalclocks/hive-chef", branch: "master"
 
+cookbook 'hops_airflow', github: "logicalclocks/airflow-chef", branch: "master"
+
 cookbook 'graphite', '~> 1.0.4'
 cookbook 'simple-logstash', '~> 0.2.4'
 
