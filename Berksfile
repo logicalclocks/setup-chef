@@ -30,6 +30,7 @@ cookbook 'glassfish', github: "logicalclocks/chef-glassfish", branch: "0.9"
 cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "0.9"
 
 cookbook 'hive2', github: "logicalclocks/hive-chef", branch: "0.9"
+cookbook 'hops_airflow', github: "logicalclocks/airflow-chef", branch: "0.9"
 
 cookbook 'graphite', '~> 1.0.4'
 cookbook 'simple-logstash', '~> 0.2.4'
