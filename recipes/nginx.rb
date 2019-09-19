@@ -37,7 +37,8 @@ res = recursiveFlat(node)
 res.each do |v|
   if v =~ /#{node['download_url']}.+/ || v =~ /http:\/\/snurran.sics.se\/hops\/.+/
     bash "download-#{v}" do
-      user 'root'
+      user node['nginx']['user']
+      group node['nginx']['group']
       cwd node['setup']['nginx']['download_dir']
       code <<-EOH
         wget --mirror --no-parent -X "*" --reject "index.html*" -e robots=off --no-host-directories #{v}
