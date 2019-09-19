@@ -46,7 +46,7 @@ cookbook 'sysctl', '~> 0.10.0'
 
 
 cookbook 'magic_shell'
-cookbook 'nginx'
+cookbook 'nginx', '= 9.0.0'
 
 cookbook 'openssl', '~> 4.4.0'
 cookbook 'hostsfile', '~> 2.4.5'
