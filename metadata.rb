@@ -43,6 +43,7 @@ depends 'nginx'
 depends 'hopsworks'
 depends 'sudo'
 depends 'hops_airflow'
+depends 'kube-hops'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
