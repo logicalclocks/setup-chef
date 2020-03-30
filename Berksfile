@@ -4,7 +4,6 @@ source 'https://supermarket.chef.io'
 metadata
 
 cookbook 'hopsworks', github: "logicalclocks/hopsworks-chef", branch: "1.1"
-cookbook 'java'
 cookbook 'conda', github: "logicalclocks/conda-chef", branch: "1.1"
 cookbook 'kagent', github: "logicalclocks/kagent-chef", branch: "1.1"
 cookbook 'hops', github: "logicalclocks/hops-hadoop-chef", branch: "1.1"
@@ -32,21 +31,3 @@ cookbook 'hive2', github: "logicalclocks/hive-chef", branch: "1.1"
 
 cookbook 'hops_airflow', github: "logicalclocks/airflow-chef", branch: "1.1"
 
-cookbook 'graphite', '~> 1.0.4'
-cookbook 'simple-logstash', '~> 0.2.4'
-
-
-cookbook 'elasticsearch', '~> 2.5.0'
-
-cookbook 'compat_resource', '~> 12.19.0'
-cookbook 'authbind', '~> 0.1.10'
-cookbook 'ntp', '~> 2.0.0'
-cookbook 'sysctl', '~> 0.10.0'
-
-
-cookbook 'magic_shell'
-cookbook 'nginx', '= 9.0.0'
-
-cookbook 'openssl', '~> 4.4.0'
-cookbook 'hostsfile', '~> 2.4.5'
-cookbook 'sudo', '~> 4.0.0'
