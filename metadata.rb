@@ -12,6 +12,7 @@ source_url       "https://github.com/logicalclocks/setup-chef"
   supports os
 end
 
+<<<<<<< HEAD
 depends 'glassfish'
 depends 'ndb'
 depends 'kagent'
@@ -44,6 +45,22 @@ depends 'hopsworks'
 depends 'sudo'
 depends 'hops_airflow'
 depends 'kube-hops'
+=======
+depends 'compat_resource', '~> 12.19.0'
+depends 'ulimit2', '~> 0.2.0'
+depends 'authbind', '~> 0.1.10'
+depends 'java', '~> 7.0.0'
+depends 'openssl', '~> 4.4.0'
+depends 'hostsfile', '~> 2.4.5'
+depends 'ntp', '~> 2.0.0'
+depends 'nginx', '= 9.0.0'
+depends 'sudo', '~> 4.0.0'
+depends 'magic_shell', '~> 1.0.0'
+depends 'sysctl', '~> 0.10.0'
+depends 'graphite', '~> 1.0.4'
+depends 'simple-logstash', '~> 0.2.4'
+depends 'elasticsearch', '~> 2.5.0'
+>>>>>>> 5308476... [HOPSWORKS-1679] pin version of java in Berksfile (#9)
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
