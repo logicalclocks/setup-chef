@@ -12,6 +12,9 @@ source_url       "https://github.com/logicalclocks/setup-chef"
   supports os
 end
 
+depends 'nginx', '= 9.0.0'
+depends 'sudo', '~> 4.0.0'
+
 depends 'hopsworks'
 depends 'conda'
 depends 'kagent'
