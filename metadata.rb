@@ -12,20 +12,6 @@ source_url       "https://github.com/logicalclocks/setup-chef"
   supports os
 end
 
-depends 'compat_resource', '~> 12.19.0'
-depends 'ulimit2', '~> 0.2.0'
-depends 'authbind', '~> 0.1.10'
-depends 'java', '~> 7.0.0'
-depends 'openssl', '~> 4.4.0'
-depends 'hostsfile', '~> 2.4.5'
-depends 'ntp', '~> 2.0.0'
-depends 'nginx', '= 9.0.0'
-depends 'sudo', '~> 4.0.0'
-depends 'magic_shell', '~> 1.0.0'
-depends 'sysctl', '~> 0.10.0'
-depends 'graphite', '~> 1.0.4'
-depends 'simple-logstash', '~> 0.2.4'
-depends 'elasticsearch', '~> 2.5.0'
 depends 'hopsworks'
 depends 'conda'
 depends 'kagent'
@@ -46,6 +32,7 @@ depends 'glassfish'
 depends 'hive2'
 depends 'hops_airflow'
 depends 'ulimit'
+depends 'consul'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
