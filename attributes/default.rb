@@ -18,7 +18,7 @@ include_attribute "livy"
 include_attribute "hops"
 include_attribute "hops_airflow"
 include_attribute "consul"
-
+include_attribute "kube-hops"
 
 
 default['install']['dir']                          = ""
