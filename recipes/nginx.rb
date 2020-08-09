@@ -35,7 +35,7 @@ end
 
 res = recursiveFlat(node)
 res.each do |v|
-  if v =~ /#{node['download_url']}.+/ || v =~ /http:\/\/snurran.sics.se\/hops\/.+/
+  if v =~ /#{node['download_url']}.+/ || v =~ /https:\/\/repo.hops.works\/master\/.+/
     bash "download-#{v}" do
       user node['nginx']['user']
       group node['nginx']['group']
