@@ -44,3 +44,8 @@ default['setup']['nginx']['port']                  = "1880"
 
 default['setup']['disable_nw_mgr']                 = "false"
 
+default['setup']['chefdk']['rhel']                 = "chefdk-3.7.23-1.el7.x86_64.rpm
+default['setup']['chefdk']['debian']               = "chefdk_3.7.23-1_amd64.deb"
+
+default['setup']['gemserver']['version']           = "2.5.0"
+default['setup']['gemserver']['port']              = "54321"
