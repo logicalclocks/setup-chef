@@ -3,7 +3,7 @@ source 'https://supermarket.chef.io'
 
 metadata
 
-cookbook 'hopsworks', github: "logicalclocks/hopsworks-chef", branch: "1.4"
+cookbook 'hopsworks', github: "logicalclocks/hopsworks-chef", branch: "elephant"
 cookbook 'conda', github: "logicalclocks/conda-chef", branch: "1.4"
 cookbook 'kagent', github: "logicalclocks/kagent-chef", branch: "1.4"
 cookbook 'hops', github: "logicalclocks/hops-hadoop-chef", branch: "1.4"
