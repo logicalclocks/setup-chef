@@ -14,8 +14,8 @@ if "#{node['setup']['nginx']['skip']}" != "true"
 end
 
 directory node['setup']['nginx']['download_dir'] do
-  owner "root"
-  group "root"
+  owner node['nginx']['user']
+  group node['nginx']['group']
   recursive true
   action :create
 end
