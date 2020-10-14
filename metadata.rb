@@ -36,7 +36,6 @@ depends 'hive2'
 depends 'hops_airflow'
 depends 'ulimit'
 depends 'consul'
-depends 'drelephant'
 depends 'kube-hops'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
