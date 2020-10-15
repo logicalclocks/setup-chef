@@ -56,7 +56,7 @@ res.each do |v|
         group node['nginx']['group']
         cwd node['setup']['nginx']['download_dir']
         code <<-EOH
-        wget --mirror --no-parent -X "*" --reject "index.html*,kube/docker-images/[0-9]*" -e robots=off --no-host-directories #{v}
+        wget --mirror --no-parent -X "*" --reject "index.html*,kube/docker-images/*" -e robots=off --no-host-directories #{v}
       EOH
       end
     end
