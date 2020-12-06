@@ -62,4 +62,3 @@ res.each do |v|
     
   end
 end
-end
