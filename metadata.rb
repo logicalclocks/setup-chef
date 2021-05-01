@@ -37,6 +37,7 @@ depends 'hops_airflow'
 depends 'ulimit'
 depends 'consul'
 depends 'kube-hops'
+depends 'java'
 
 recipe "setup::install", "Fixes /etc/hosts and pings for connectivitiy"
 recipe "setup::default", "Checks memory, diskspace, returns a report to Karamel"
