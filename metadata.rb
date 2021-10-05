@@ -4,7 +4,7 @@ name             "setup"
 license          "AGPL 3.0"
 description      "Installs/Configures the Setup cookbook used by Hops"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "3.0.0"
+version          "2.4.0"
 source_url       "https://github.com/logicalclocks/setup-chef"
 
 
