@@ -45,7 +45,7 @@ attribute "seutp/user",
   :description => "User creating and downloading the distribution binaries. (Default: vagrant)",
           :type => "string"
 
-attribute "seutp/group",
+attribute "setup/group",
   :description => "Group creating and downloading the distribution binaries. (Default: vagrant)",
           :type => "string"
 
