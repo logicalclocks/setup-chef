@@ -49,7 +49,7 @@ attribute "setup/group",
   :description => "Group creating and downloading the distribution binaries. (Default: vagrant)",
           :type => "string"
 
-attribute "seutp/download_dir",
+attribute "setup/download_dir",
   :description => "Location where the distribution binaries will be downloaded. (Default: /home/vagrant/dist",
           :type => "string"
 
