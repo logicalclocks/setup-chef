@@ -37,7 +37,7 @@ res.each do |v|
         group node['setup']['group']
         cwd node['setup']['download_dir']
         code <<-EOH
-        wget --mirror --no-parent -X "*" --reject "index.html*" --accept-regex ".*kube\/docker-images\/#{node['install']['version']}\/*" -e robots=off --no-host-directories #{v}
+        wget --mirror --no-parent -X "*" -N --reject "index.html*" --accept-regex ".*kube\/docker-images\/#{node['install']['version']}\/*" -e robots=off --no-host-directories #{v}
       EOH
       end
     else
@@ -46,7 +46,7 @@ res.each do |v|
         group node['setup']['group']
         cwd node['setup']['download_dir']
         code <<-EOH
-        wget --mirror --no-parent -X "*" --reject "index.html*" --reject-regex ".*kube\/docker-images\/[0-9]+.*" -e robots=off --no-host-directories #{v}
+        wget --mirror --no-parent -X "*" -N --reject "index.html*" --reject-regex ".*kube\/docker-images\/[0-9]+.*" -e robots=off --no-host-directories #{v}
       EOH
       end
     end
