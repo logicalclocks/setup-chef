@@ -41,7 +41,7 @@ depends 'onlinefs'
 recipe "setup::install", ""
 recipe "setup::default", "Download distribution artifacts"
 
-attribute "seutp/user",
+attribute "setup/user",
   :description => "User creating and downloading the distribution binaries. (Default: vagrant)",
           :type => "string"
 
