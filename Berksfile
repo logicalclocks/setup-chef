@@ -25,3 +25,5 @@ cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "3.3"
 cookbook 'consul', github: "logicalclocks/consul-chef", branch: "3.3"
 cookbook 'kube-hops', github: "logicalclocks/kube-hops-chef", branch: "3.3"
 cookbook 'onlinefs', github: "logicalclocks/onlinefs-chef", branch: "3.3"
+
+cookbook 'java', github: "logicalclocks/java", branch: "v7.0.0-1"
